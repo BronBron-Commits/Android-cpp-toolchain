@@ -1,0 +1,21 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "termux-debug",
+      "displayName": "Termux Debug",
+      "generator": "Ninja",
+      "binaryDir": "build/termux-debug",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "toolchains/termux.cmake",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "termux-debug",
+      "configurePreset": "termux-debug"
+    }
+  ]
+}
