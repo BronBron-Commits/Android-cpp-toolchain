@@ -3,7 +3,7 @@
   "configurePresets": [
     {
       "name": "termux-debug",
-      "displayName": "Termux Debug",
+      "displayName": "Termux Debug (Native Android)",
       "generator": "Ninja",
       "binaryDir": "build/termux-debug",
       "cacheVariables": {
