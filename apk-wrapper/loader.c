@@ -1,3 +1,5 @@
+#include "android_core/core_lifecycle.h"
+#include "android_core/core_input.h"
 #include <android/native_activity.h>
 #include <android/log.h>
 #include <EGL/egl.h>

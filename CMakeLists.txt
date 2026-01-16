@@ -19,10 +19,11 @@ if (ANDROID_DETERMINISTIC)
     )
 endif()
 
-# ---- Core shared library (Android-loadable) ----
 add_library(core SHARED
     src/core.cpp
     src/core_loop.cpp
+    src/core_input.cpp
+    src/core_lifecycle.cpp
     src/android_core_entry.cpp
 )
 
@@ -31,13 +32,11 @@ target_include_directories(core
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Android system libraries used by core
 target_link_libraries(core
     PRIVATE
         log
 )
 
-# ---- Smoke test executable ----
 add_executable(smoke
     src/smoke.cpp
 )
