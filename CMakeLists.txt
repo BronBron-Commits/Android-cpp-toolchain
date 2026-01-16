@@ -24,6 +24,7 @@ add_library(core SHARED
     src/core_loop.cpp
     src/core_input.cpp
     src/core_lifecycle.cpp
+    src/example_state.cpp
     src/android_core_entry.cpp
 )
 
@@ -32,13 +33,7 @@ target_include_directories(core
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(core
-    PRIVATE
-        log
-)
+target_link_libraries(core PRIVATE log)
 
-add_executable(smoke
-    src/smoke.cpp
-)
-
+add_executable(smoke src/smoke.cpp)
 target_link_libraries(smoke PRIVATE core)

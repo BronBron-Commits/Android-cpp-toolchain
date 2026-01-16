@@ -6,6 +6,8 @@
 #include "android_core/core_platform.h"
 #include "android_core/core_loop.h"
 
+extern "C" uint64_t example_get(void);
+
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, "CORE", __VA_ARGS__)
 
 static uint64_t now_ns(void)
@@ -22,27 +24,30 @@ extern "C" void core_main(
     (void)activity;
     (void)platform;
 
-    LOGI("core_main entered");
-
     core_init();
 
     uint64_t last_time = now_ns();
-    uint64_t accumulator = 0;
+    uint64_t acc = 0;
+    uint64_t last_log_tick = 0;
 
     for (;;)
     {
-        uint64_t current = now_ns();
-        uint64_t delta = current - last_time;
-        last_time = current;
+        uint64_t cur = now_ns();
+        uint64_t dt = cur - last_time;
+        last_time = cur;
+        acc += dt;
 
-        accumulator += delta;
-
-        while (accumulator >= CORE_TICK_NS)
+        while (acc >= CORE_TICK_NS)
         {
             core_tick();
-            accumulator -= CORE_TICK_NS;
+            acc -= CORE_TICK_NS;
         }
 
-        core_render();
+        if (example_get() - last_log_tick >= CORE_TICK_HZ)
+        {
+            last_log_tick = example_get();
+            LOGI("stable counter = %llu",
+                 (unsigned long long)example_get());
+        }
     }
 }
