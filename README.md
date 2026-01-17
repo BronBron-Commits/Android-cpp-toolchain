@@ -72,4 +72,4 @@ Edit `CMakePresets.json` to adjust:
 - `ANDROID_PLATFORM` (android-21 → android-34, etc.)
 - `ANDROID_ABI`
 - `ANDROID_STL` (c++_shared, c++_static, etc.)
-- Optimization flags, sani
+- Optimization flags, saniitzers, etc.
